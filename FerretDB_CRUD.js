@@ -4,7 +4,7 @@ db.createCollection("Dishes");
 // CREATE
 
 // Create one document
-db.Dishes.insertOne({
+db.dishes.insertOne({
     DisheID: 61,
     DName: "Lorem Ipsum",
     Quantity: 50,
@@ -17,7 +17,7 @@ db.Dishes.insertOne({
 })
 
 // Create multiple documents
-db.Dishes.insertMany([
+db.dishes.insertMany([
     {
         DisheID: 62,
         DName: "Dolor Sit Amet",
@@ -44,7 +44,7 @@ db.Dishes.insertMany([
 
 // Create a new document 
 // that doesn't follow the schema
-db.Dishes.insertOne({
+db.dishes.insertOne({
     DisheID: 64,
     DName: "Elit Sed Do",
     Quantity: "Twenty",  // Invalid data type
@@ -60,14 +60,14 @@ db.Dishes.insertOne({
 // READ
 
 // Retrieve all documents
-db.Dishes.find({});
+db.dishes.find({});
 
 // Retrieve a single document by DisheID
-db.Dishes.findOne({ DisheID: 61 });
+db.dishes.findOne({ DisheID: 61 });
 
 // Retrieve documents with Calories greater than 600 and less than 800 
 // and sort by DName in ascending order
-db.Dishes.find({ Calories: { $gt: 600, $lt: 800 } }).sort({ DName: 1 });
+db.dishes.find({ Calories: { $gt: 600, $lt: 800 } }).sort({ DName: 1 });
 
 // $ operators
 // gt - greater than
@@ -80,10 +80,10 @@ db.Dishes.find({ Calories: { $gt: 600, $lt: 800 } }).sort({ DName: 1 });
 // eq - equal to
 
 // Retrieve documents with dish name "Lorem Ipsum" 
-db.Dishes.find({ DName: 'Lorem Ipsum' });
+db.dishes.find({ DName: 'Lorem Ipsum' });
 
 // Retrieve documents with dish names with either "Lorem Ipsum" or "Dolor Sit Amet"
-db.Dishes.find({ DName: { $in: ["Lorem Ipsum", "Dolor Sit Amet"] } });
+db.dishes.find({ DName: { $in: ["Lorem Ipsum", "Dolor Sit Amet"] } });
 
 // UPDATE
 
@@ -95,7 +95,7 @@ db.Dishes.find({ DName: { $in: ["Lorem Ipsum", "Dolor Sit Amet"] } });
 // pop - in an array, this operator removes the first or last item
 
 // Update a single document's Protein value by Name
-db.Dishes.updateOne({ 
+db.dishes.updateOne({ 
     DName: "Lorem Ipsum" 
 },
 { 
@@ -103,7 +103,7 @@ db.Dishes.updateOne({
 });
 
 // Replace document by Name
-db.Dishes.replaceOne({
+db.dishes.replaceOne({
     DName: "Dolor Sit Amet"
 },
 {
@@ -130,11 +130,10 @@ db.Dishes.updateMany({
 // DELETE
 
 // Delete a single document by DisheID
-db.Dishes.deleteOne({ DisheID: 63 });
+db.dishes.deleteOne({ DisheID: 63 });
 
 // Delete document where cost is 8.49
-db.Dishes.deleteOne({ Cost: 8.49 });
+db.dishes.deleteOne({ Cost: 8.49 });
 
 // Delete multiple documents where Calories is less than 500
-db.Dishes.deleteMany({ Calories: { $lt: 500 } });
-
+db.dishes.deleteMany({ Calories: { $lt: 500 } });

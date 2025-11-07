@@ -69,7 +69,7 @@ db.Dishes.findOne({ DisheID: 61 });
 // and sort by DName in ascending order
 db.Dishes.find({ Calories: { $gt: 600, $lt: 800 } }).sort({ DName: 1 });
 
-// % operators
+// $ operators
 // gt - greater than
 // lt - less than
 // gte - greater than or equal to
@@ -85,5 +85,56 @@ db.Dishes.find({ DName: 'Lorem Ipsum' });
 // Retrieve documents with dish names with either "Lorem Ipsum" or "Dolor Sit Amet"
 db.Dishes.find({ DName: { $in: ["Lorem Ipsum", "Dolor Sit Amet"] } });
 
+// UPDATE
 
+// $ operators
+// set - assigns the value for an updated field to the document
+// setOnInsert - specifies the value of a field when an update operation
+//               results in the addicition of a new document. (No effect when modifying an existing document)
+// unset - removes a specific field from a document
+// pop - in an array, this operator removes the first or last item
+
+// Update a single document's Protein value by Name
+db.Dishes.updateOne({ 
+    DName: "Lorem Ipsum" 
+},
+{ 
+    $set: { Protein: 30 } 
+});
+
+// Replace document by Name
+db.Dishes.replaceOne({
+    DName: "Dolor Sit Amet"
+},
+{
+    DisheID: 62,
+    DName: "Dolor Sit Amet",
+    Quantity: 35,
+    Calories: 650,
+    Protein: 21,
+    Carbs: 75,
+    Sugar: 5,
+    SaturatedFat: 8,
+    Cost: 8.49
+});
+
+// Update many documents by changing all values of Protein to 30 
+// if less than 40 and greater than 20
+db.Dishes.updateMany({
+    Protein: { $gt: 20, $lt: 40 }
+},
+{
+    $set: { Protein: 30 }
+});
+
+// DELETE
+
+// Delete a single document by DisheID
+db.Dishes.deleteOne({ DisheID: 63 });
+
+// Delete document where cost is 8.49
+db.Dishes.deleteOne({ Cost: 8.49 });
+
+// Delete multiple documents where Calories is less than 500
+db.Dishes.deleteMany({ Calories: { $lt: 500 } });
 

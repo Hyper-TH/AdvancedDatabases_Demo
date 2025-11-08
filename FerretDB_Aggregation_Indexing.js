@@ -4,15 +4,11 @@ db.dishes.aggregate([
     // Stage 1 match documents with Calories >= 500
     { $match: { Calories: { $gte: 500 } } },
     {
-        // Stage 2 group by DName and calculate total Calories and average Cost
-        $group: {
-            _id: "$DName",
-            totalCalories: { $sum: "$Calories" },
-            averageCost: { $avg: "$Cost" }
-        }
+        // Stage 2 group by Protein
+        $group: {_id: "$Protein"}
     },
-    // Stage 3 sort by totalCalories in descending order
-    { $sort: { totalCalories: -1 } }
+    // Stage 3 sort by Calories in descending order
+    { $sort: { Calories: -1 } }
 ]);
 
 // Indexing example

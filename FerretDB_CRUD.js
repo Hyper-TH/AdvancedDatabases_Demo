@@ -42,8 +42,7 @@ db.dishes.insertMany([
     }
 ]);
 
-// Create a new document 
-// that doesn't follow the schema
+// Create a new document that doesn't follow the schema
 db.dishes.insertOne({
     DisheID: 64,
     DName: "Elit Sed Do",
@@ -90,7 +89,7 @@ db.dishes.find({ DName: { $in: ["Lorem Ipsum", "Dolor Sit Amet"] } });
 // $ operators
 // set - assigns the value for an updated field to the document
 // setOnInsert - specifies the value of a field when an update operation
-//               results in the addicition of a new document. (No effect when modifying an existing document)
+//               results in the addition of a new document. (No effect when modifying an existing document)
 // unset - removes a specific field from a document
 // pop - in an array, this operator removes the first or last item
 

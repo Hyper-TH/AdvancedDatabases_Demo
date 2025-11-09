@@ -1,15 +1,18 @@
 // https://docs.ferretdb.io/v1.24/aggregation-operations/aggregation-pipeline-and-commands/
 // Aggregation Example with sorting and grouping
 db.dishes.aggregate([
-    // Stage 1 match documents with Calories >= 500
-    { $match: { Calories: { $gte: 500 } } },
-    {
-        // Stage 2 group by Protein
-        $group: {_id: "$Protein"}
-    },
-    // Stage 3 sort by Calories in descending order
-    { $sort: { Calories: -1 } }
-]);
+// Filter by Calores less than 500
+{ $match: { Calories: { $lt: 500 } } },
+{
+    $group: {
+        _id: "$Cost",   // Group by Cost
+        avgProtein: { $avg: "$Protein" },   // Avg Protein per group
+        productCount: { $sum: 1 }   // Count of dishes per group
+    }
+},
+// Sort by descending Cost
+{ $sort: { $Cost: -1 } }
+])
 
 // Indexing example
 // Single field indexes

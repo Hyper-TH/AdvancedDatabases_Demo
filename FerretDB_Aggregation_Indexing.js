@@ -1,7 +1,7 @@
 // https://docs.ferretdb.io/v1.24/aggregation-operations/aggregation-pipeline-and-commands/
 // Aggregation Example with sorting and grouping
 db.dishes.aggregate([
-// Filter by Calores less than 500
+// Filter by Calories less than 500
 { $match: { Calories: { $lt: 500 } } },
 {
     $group: {
